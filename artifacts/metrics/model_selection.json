@@ -1,0 +1,54 @@
+{
+  "criterion": "lowest 2024 validation MAE among tuned models and main feature configurations",
+  "best": {
+    "model": "ensemble",
+    "feature_config": "full_weather",
+    "validation_mae": 2.2274228180860236
+  },
+  "per_model": [
+    {
+      "model": "ensemble",
+      "feature_config": "full_weather",
+      "validation_mae": 2.2274228180860236
+    },
+    {
+      "model": "random_forest",
+      "feature_config": "full_weather",
+      "validation_mae": 2.3520385027893407
+    },
+    {
+      "model": "ridge",
+      "feature_config": "full_weather",
+      "validation_mae": 2.637003530635127
+    },
+    {
+      "model": "svr",
+      "feature_config": "full_weather",
+      "validation_mae": 2.261124165230498
+    },
+    {
+      "model": "xgboost",
+      "feature_config": "full_weather",
+      "validation_mae": 2.2489461320231787
+    }
+  ],
+  "periods": {
+    "train": "2021-01-01..2023-12-31",
+    "validation": "2024-01-01..2024-12-31",
+    "test": "2025-01-01..2025-12-31"
+  },
+  "n_samples": {
+    "train": 1061,
+    "validation": 351,
+    "test": 346
+  },
+  "persistence_mae": {
+    "validation": 3.7106393162393165,
+    "test": 3.5155659922928706
+  },
+  "best_without_weather": {
+    "model": "ensemble",
+    "feature_config": "full_selected",
+    "validation_mae": 3.0703644250334294
+  }
+}

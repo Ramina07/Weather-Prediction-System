@@ -1,0 +1,109 @@
+# =============================================================================
+# Project configuration: Next-day PM2.5 forecasting for Astana, Kazakhstan
+# All paths are relative to the project root (the folder containing this file).
+# The API key is NOT stored here; it is read from the OPENWEATHER_API_KEY
+# environment variable (loaded from .env by python-dotenv).
+# =============================================================================
+
+project:
+  name: "astana-pm25-nextday"
+  random_seed: 42
+
+location:
+  name: "Astana, Kazakhstan"
+  latitude: 51.1694
+  longitude: 71.4491
+  timezone: "Asia/Almaty"        # IANA zone used for all local-date logic
+
+api:
+  provider: "OpenWeatherMap Air Pollution API"
+  base_url: "https://api.openweathermap.org/data/2.5"
+  timeout_seconds: 30
+  max_retries: 5
+  backoff_base_seconds: 2.0       # exponential backoff: base * 2**attempt
+  min_seconds_between_calls: 1.1  # free plan: 60 calls/minute
+  smoke_test_history_start_utc: "2025-06-01T00:00:00Z"
+  smoke_test_history_end_utc: "2025-06-02T00:00:00Z"
+
+download:
+  # Benchmark period (local dates). A short lead-in before 2021-01-01 is
+  # downloaded so that the first 2021 samples have 72-96 h of history.
+  start_date: "2021-01-01"
+  end_date: "2025-12-31"
+  lead_in_days: 6
+  chunk_days: 7
+  min_chunk_hours: 24
+  # A chunk is split in half when it returns fewer than this share of the
+  # expected hourly records (possible truncation). Genuine provider gaps are
+  # recorded after the minimum chunk size is reached.
+  split_if_coverage_below: 0.5
+  operational_start_date: "2026-01-01"
+
+paths:
+  raw_chunks_dir: "data/raw/chunks"
+  manifest: "data/raw/chunks/manifest.json"
+  raw_csv: "data/raw/openweather_astana_2021_2025.csv"
+  raw_operational_csv: "data/raw/openweather_astana_operational.csv"
+  raw_metadata: "data/raw/dataset_metadata.json"
+  weather_cache_dir: "data/raw/weather"
+  weather_csv: "data/raw/weather_openmeteo_hourly.csv"
+  clean_hourly_csv: "data/interim/hourly_air_pollution_clean.csv"
+  clean_operational_csv: "data/interim/hourly_air_pollution_operational_clean.csv"
+  quality_report_json: "artifacts/metrics/data_quality_report.json"
+  quality_report_md: "artifacts/metrics/data_quality_report.md"
+  features_csv: "data/processed/daily_pm25_features.csv"
+  features_operational_csv: "data/processed/daily_pm25_features_operational.csv"
+  models_dir: "artifacts/models"
+  metrics_dir: "artifacts/metrics"
+  figures_dir: "artifacts/figures"
+  predictions_dir: "artifacts/predictions"
+  logs_dir: "artifacts/logs"
+
+forecast:
+  # Operational protocol: a forecast is issued at 18:00 local time on day d
+  # for the mean PM2.5 of local calendar day d+1.
+  issue_hour_local: 18
+  # Hourly records are labelled by the START of their hour (OpenWeatherMap
+  # `dt`). A record labelled hh:00 is treated as available only after
+  # (hh+1):00. Therefore at an 18:00 issue the newest usable record is 17:00.
+  timestamp_convention: "hour_beginning"
+  target_min_valid_hours: 20      # out of 24 for a valid daily target
+  rolling_min_coverage: 0.75      # share of valid hours required in a window
+  last_value_max_age_hours: 3     # pm25_last must be at most this old
+  max_staleness_hours: 3          # live inference: newest obs vs issue time
+  live_history_hours: 120         # hours fetched for live inference
+
+weather:
+  provider: "Open-Meteo (Zippenfenig, 2023; ERA5-based archive + operational forecast)"
+  archive_url: "https://archive-api.open-meteo.com/v1/archive"
+  forecast_url: "https://api.open-meteo.com/v1/forecast"
+  end_date: "2099-12-31"          # capped automatically at today - 6 days (archive delay)
+  required_for_prediction: false   # if the forecast cannot be fetched, fall back to the no-weather model
+
+pollutants: ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"]
+
+splits:            # applied to TARGET dates (local), inclusive
+  train: ["2021-01-01", "2023-12-31"]
+  validation: ["2024-01-01", "2024-12-31"]
+  test: ["2025-01-01", "2025-12-31"]
+
+training:
+  cv_splits: 5
+  cv_gap_days: 1                  # embargo between CV train and CV validation
+  n_iter: 25                      # RandomizedSearchCV budget per model/config
+  n_iter_quick: 6
+  n_jobs: -1
+  feature_configs: ["basic", "lag", "full", "full_selected", "full_weather"]
+  ablation_configs: ["full_aqi", "full_weather_past"]  # evaluated, never used for model selection
+  models: ["ridge", "random_forest", "xgboost", "svr"]
+  ensemble: true                  # Model 5: average of tuned RF + XGBoost + SVR
+
+evaluation:
+  primary_metric: "mae"
+  elevated_quantile: 0.90         # threshold estimated on TRAINING targets only
+  who_24h_guideline: 15.0         # WHO (2021) 24-h PM2.5 AQG level, ug/m3
+  smape_epsilon: 1.0e-6
+  heating_season:                 # documented convention for Astana
+    start: "10-15"                # MM-DD (inclusive)
+    end: "04-15"                  # MM-DD (inclusive)
+  interval_coverage: 0.90         # empirical prediction interval (optional)

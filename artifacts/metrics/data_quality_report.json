@@ -1,0 +1,176 @@
+{
+  "steps": [
+    {
+      "step": "drop_invalid_timestamps",
+      "removed": 0
+    },
+    {
+      "step": "drop_future_timestamps",
+      "removed": 0
+    },
+    {
+      "step": "sort_chronologically",
+      "was_sorted": true
+    },
+    {
+      "step": "remove_duplicates",
+      "exact_duplicates_removed": 0,
+      "conflicting_duplicate_rows": 0,
+      "conflicting_removed_keep_first": 0,
+      "reason": "one observation per hourly timestamp; first occurrence kept"
+    },
+    {
+      "step": "invalidate_impossible_values",
+      "set_to_nan": {
+        "aqi": 0,
+        "co": 0,
+        "no": 0,
+        "no2": 2,
+        "o3": 1,
+        "so2": 0,
+        "pm2_5": 0,
+        "pm10": 1,
+        "nh3": 0
+      },
+      "rule": "negative concentrations; AQI outside 1-5"
+    },
+    {
+      "step": "reindex_complete_hourly_grid",
+      "grid_hours": 43969,
+      "missing_hours_inserted_as_nan": 696,
+      "off_grid_timestamps_floored": 0,
+      "note": "missing hours are NOT interpolated"
+    }
+  ],
+  "unparseable_values": {
+    "dt_unix": 0,
+    "aqi": 0,
+    "co": 0,
+    "no": 0,
+    "no2": 0,
+    "o3": 0,
+    "so2": 0,
+    "pm2_5": 0,
+    "pm10": 0,
+    "nh3": 0
+  },
+  "before": {
+    "first_timestamp_utc": "2020-12-25T18:00:00+00:00",
+    "last_timestamp_utc": "2025-12-31T18:00:00+00:00",
+    "first_timestamp_local": "2020-12-26T00:00:00+06:00",
+    "last_timestamp_local": "2025-12-31T23:00:00+05:00",
+    "n_records": 43273,
+    "n_unique_timestamps": 43273,
+    "n_duplicated_timestamps": 0,
+    "expected_hourly_intervals": 43969,
+    "coverage_pct": 98.417,
+    "missing_hours": 696,
+    "missing_by_field": {
+      "aqi": 0,
+      "co": 0,
+      "no": 0,
+      "no2": 0,
+      "o3": 0,
+      "so2": 0,
+      "pm2_5": 0,
+      "pm10": 0,
+      "nh3": 0
+    },
+    "missing_pct_by_field": {
+      "aqi": 0.0,
+      "co": 0.0,
+      "no": 0.0,
+      "no2": 0.0,
+      "o3": 0.0,
+      "so2": 0.0,
+      "pm2_5": 0.0,
+      "pm10": 0.0,
+      "nh3": 0.0
+    },
+    "pm2_5_min": 0.0,
+    "pm2_5_max": 87.67,
+    "n_calendar_days_local": 1832,
+    "n_valid_days_min_20h": 1783,
+    "n_days_with_24h": 1783,
+    "n_negative_values": {
+      "aqi": 0,
+      "co": 0,
+      "no": 0,
+      "no2": 2,
+      "o3": 1,
+      "so2": 0,
+      "pm2_5": 0,
+      "pm10": 1,
+      "nh3": 0
+    },
+    "is_sorted": true
+  },
+  "extremes": {
+    "method": "robust z-score of log1p(PM2.5) > 3.5 (flag only, retained)",
+    "n_flagged_hours": 0,
+    "pm25_p99": 35.588399999999965,
+    "pm25_max": 87.67
+  },
+  "gaps": {
+    "n_gaps": 20,
+    "max_gap_hours": 120,
+    "gaps_over_24h": 6,
+    "gap_length_counts": {
+      "24": 14,
+      "48": 5,
+      "120": 1
+    }
+  },
+  "after": {
+    "first_timestamp_utc": "2020-12-25T18:00:00+00:00",
+    "last_timestamp_utc": "2025-12-31T18:00:00+00:00",
+    "first_timestamp_local": "2020-12-26T00:00:00+06:00",
+    "last_timestamp_local": "2025-12-31T23:00:00+05:00",
+    "n_records": 43273,
+    "n_unique_timestamps": 43273,
+    "n_duplicated_timestamps": 0,
+    "expected_hourly_intervals": 43969,
+    "coverage_pct": 98.417,
+    "missing_hours": 696,
+    "missing_by_field": {
+      "aqi": 0,
+      "co": 0,
+      "no": 0,
+      "no2": 2,
+      "o3": 1,
+      "so2": 0,
+      "pm2_5": 0,
+      "pm10": 1,
+      "nh3": 0
+    },
+    "missing_pct_by_field": {
+      "aqi": 0.0,
+      "co": 0.0,
+      "no": 0.0,
+      "no2": 0.005,
+      "o3": 0.002,
+      "so2": 0.0,
+      "pm2_5": 0.0,
+      "pm10": 0.002,
+      "nh3": 0.0
+    },
+    "pm2_5_min": 0.0,
+    "pm2_5_max": 87.67,
+    "n_calendar_days_local": 1832,
+    "n_valid_days_min_20h": 1783,
+    "n_days_with_24h": 1783,
+    "n_negative_values": {
+      "aqi": 0,
+      "co": 0,
+      "no": 0,
+      "no2": 0,
+      "o3": 0,
+      "so2": 0,
+      "pm2_5": 0,
+      "pm10": 0,
+      "nh3": 0
+    },
+    "is_sorted": true,
+    "grid_rows_including_missing_hours": 43969
+  }
+}

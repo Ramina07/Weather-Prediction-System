@@ -1,0 +1,46 @@
+{
+  "shap": "skipped (shap not installed; optional)",
+  "best_model": "ensemble",
+  "top_permutation_features_best_model": [
+    {
+      "feature": "pm25_last",
+      "mae_increase_mean": 0.4474774911834832
+    },
+    {
+      "feature": "pm10_last",
+      "mae_increase_mean": 0.25613105875004627
+    },
+    {
+      "feature": "target_month_cos",
+      "mae_increase_mean": 0.11724097351390968
+    },
+    {
+      "feature": "wxf_wind_mean",
+      "mae_increase_mean": 0.1123463755877085
+    },
+    {
+      "feature": "wxf_calm_hours",
+      "mae_increase_mean": 0.09550669027757279
+    },
+    {
+      "feature": "target_doy_cos",
+      "mae_increase_mean": 0.09423204035217574
+    },
+    {
+      "feature": "wxf_temp_change",
+      "mae_increase_mean": 0.08679691110833976
+    },
+    {
+      "feature": "wxf_pressure_change",
+      "mae_increase_mean": 0.08468301667717837
+    },
+    {
+      "feature": "pm25_mean_6h",
+      "mae_increase_mean": 0.08029115537875042
+    },
+    {
+      "feature": "wx_pressure_last",
+      "mae_increase_mean": 0.06920292288061156
+    }
+  ]
+}

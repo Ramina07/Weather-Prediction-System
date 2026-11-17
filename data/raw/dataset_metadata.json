@@ -1,0 +1,56 @@
+{
+  "provider": "OpenWeatherMap Air Pollution API",
+  "endpoint": "https://api.openweathermap.org/data/2.5/air_pollution/history",
+  "documentation": "https://openweathermap.org/api/air-pollution",
+  "location": {
+    "name": "Astana, Kazakhstan",
+    "latitude": 51.1694,
+    "longitude": 71.4491,
+    "timezone": "Asia/Almaty"
+  },
+  "api_returned_coordinates": {
+    "lat": 51.1694,
+    "lon": 71.4491
+  },
+  "requested_interval_utc": [
+    "2020-12-25T18:00:00Z",
+    "2025-12-31T19:00:00Z"
+  ],
+  "timestamp_convention": "dt = start of the hourly interval, Unix seconds UTC",
+  "units": {
+    "co": "ug/m3",
+    "no": "ug/m3",
+    "no2": "ug/m3",
+    "o3": "ug/m3",
+    "so2": "ug/m3",
+    "pm2_5": "ug/m3",
+    "pm10": "ug/m3",
+    "nh3": "ug/m3",
+    "aqi": "index 1 (Good) - 5 (Very Poor)"
+  },
+  "n_records": 43273,
+  "first_timestamp_utc": "2020-12-25T18:00:00Z",
+  "last_timestamp_utc": "2025-12-31T18:00:00Z",
+  "combine": {
+    "chunks_used": 265,
+    "records_before_dedup": 43273,
+    "duplicates_removed": 0,
+    "records_outside_interval": 0,
+    "api_returned_coordinates": {
+      "lat": 51.1694,
+      "lon": 71.4491
+    }
+  },
+  "download": {
+    "n_chunks_planned": 262,
+    "n_chunks_downloaded": 0,
+    "n_chunks_cached": 265,
+    "n_chunks_split": 0,
+    "n_chunks_failed": 0,
+    "n_requests": 0,
+    "n_records_returned": 43273,
+    "failed_intervals": []
+  },
+  "created_utc": "2026-11-17T02:31:05Z",
+  "note": "Values are API-provided (modelled/aggregated) concentrations for the requested coordinate, not direct measurements from a specific ground station."
+}

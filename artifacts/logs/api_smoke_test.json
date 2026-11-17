@@ -1,0 +1,61 @@
+{
+  "tested_at_utc": "2026-11-17T02:31:00.339543+00:00",
+  "coordinates": [
+    51.1694,
+    71.4491
+  ],
+  "current": {
+    "http_status": 200,
+    "n_observations": 1,
+    "schema_ok": true,
+    "pm25_present": true,
+    "n_missing_pm25": 0,
+    "field_types": {
+      "dt": "int",
+      "aqi": "float",
+      "co": "float",
+      "no": "float",
+      "no2": "float",
+      "o3": "float",
+      "so2": "float",
+      "pm2_5": "float",
+      "pm10": "float",
+      "nh3": "float"
+    },
+    "api_coordinates": [
+      51.1694,
+      71.4491
+    ],
+    "first_dt_utc": "2026-11-17T02:31:03+00:00",
+    "last_dt_utc": "2026-11-17T02:31:03+00:00",
+    "example_pm2_5": 3.74
+  },
+  "history": {
+    "http_status": 200,
+    "n_observations": 25,
+    "schema_ok": true,
+    "pm25_present": true,
+    "n_missing_pm25": 0,
+    "field_types": {
+      "dt": "int",
+      "aqi": "float",
+      "co": "float",
+      "no": "float",
+      "no2": "float",
+      "o3": "float",
+      "so2": "float",
+      "pm2_5": "float",
+      "pm10": "float",
+      "nh3": "float"
+    },
+    "api_coordinates": [
+      51.1694,
+      71.4491
+    ],
+    "first_dt_utc": "2025-06-01T00:00:00+00:00",
+    "last_dt_utc": "2025-06-02T00:00:00+00:00",
+    "example_pm2_5": 1.73,
+    "expected_hours": 25
+  },
+  "n_requests": 2
+}

@@ -1,0 +1,3 @@
+# Optional: SHAP explanations for the selected tree-based model (Experiment E6).
+# The pipeline runs without it; SHAP figures are skipped if it is not installed.
+shap>=0.45

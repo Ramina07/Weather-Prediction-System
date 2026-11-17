@@ -1,0 +1,21 @@
+{
+  "python": "3.9.6",
+  "platform": "macOS-15.7.4-arm64-arm-64bit",
+  "pandas": "2.3.3",
+  "numpy": "2.0.2",
+  "requests": "2.32.5",
+  "dotenv": "installed",
+  "yaml": "6.0.3",
+  "matplotlib": "3.9.4",
+  "seaborn": "0.13.2",
+  "sklearn": "1.6.1",
+  "xgboost": "2.1.4",
+  "scipy": "1.13.1",
+  "statsmodels": "0.14.6",
+  "joblib": "1.5.3",
+  "pytest": "8.4.2",
+  "nbformat": "5.10.4",
+  "nbconvert": "7.17.2",
+  "shap": "NOT INSTALLED",
+  "tzdata": "2026.6"
+}

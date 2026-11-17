@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "air_quality"
+version = "1.0.0"
+description = "Leakage-free next-day PM2.5 forecasting for Astana using the OpenWeatherMap Air Pollution API"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []  # see requirements.txt
+
+[project.scripts]
+air-quality = "air_quality.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
