@@ -5,27 +5,27 @@
     "lat": 51.1694,
     "lon": 71.4491
   },
-  "forecast_issued_local": "2026-11-16T18:00:00+05:00",
-  "forecast_generated_at_local": "2026-11-17T07:48:26.672760+05:00",
+  "forecast_issued_local": "2026-11-20T18:00:00+05:00",
+  "forecast_generated_at_local": "2026-11-21T00:18:58.807832+05:00",
   "issue_protocol": "latest: issued at the most recent completed issue time (yesterday); target = TODAY",
-  "prediction_date": "2026-11-17",
+  "prediction_date": "2026-11-21",
   "target": "mean PM2.5 over local calendar day (00:00-23:59, Asia/Almaty)",
-  "predicted_pm25": 3.32,
+  "predicted_pm25": 11.22,
   "units": "µg/m³",
   "prediction_interval": {
     "coverage_nominal": 0.9,
-    "lower": 0.0,
-    "upper": 9.226294296120463,
+    "lower": 7.318835112412092,
+    "upper": 17.126533095532757,
     "method": "2024 validation residuals of the train-only fit (empirical, approximate)"
   },
   "model": "ensemble",
   "feature_config": "full_weather",
-  "model_artifact": "artifacts/models/benchmark/best_model.joblib",
+  "model_artifact": "artifacts\\models\\benchmark\\best_model.joblib",
   "model_fitted_on": "train+validation",
-  "data_freshness_latest_observation_utc": "2026-11-16T12:00:00Z",
-  "data_freshness_latest_observation_local": "2026-11-16T17:00:00+05:00",
+  "data_freshness_latest_observation_utc": "2026-11-20T12:00:00Z",
+  "data_freshness_latest_observation_local": "2026-11-20T17:00:00+05:00",
   "pm25_coverage_last_72h_pct": 100.0,
-  "recent_pm25_mean_24h": 1.27,
+  "recent_pm25_mean_24h": 17.28,
   "weather_data": "Open-Meteo forecast (past 24 h + forecast for the target day)",
   "reliable": true,
   "warnings": [],
@@ -34,7 +34,7 @@
   "provider_forecast": {
     "label": "OpenWeatherMap Provider Forecast",
     "note": "Published by the provider; NOT produced by our ML model.",
-    "mean_pm25_target_date": 3.21,
-    "n_hours": 17
+    "mean_pm25_target_date": 10.46,
+    "n_hours": 24
   }
 }

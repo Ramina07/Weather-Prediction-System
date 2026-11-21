@@ -1,0 +1,66 @@
+<svg viewBox="0 0 1200 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMax slice" style="width:100%;height:100%;display:block">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="0.6" stop-color="#0E1B2E"/>
+      <stop offset="1" stop-color="#0F2A33"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.35" r="0.45">
+      <stop offset="0" stop-color="#14B8A6" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#14B8A6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="far" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1E3A4A"/><stop offset="1" stop-color="#14283A"/>
+    </linearGradient>
+    <linearGradient id="near" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0F2F3A"/><stop offset="1" stop-color="#0B1E2A"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FDE68A"/><stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0B1220" stop-opacity="1"/>
+      <stop offset="0.45" stop-color="#0B1220" stop-opacity="0.6"/>
+      <stop offset="0.7" stop-color="#0B1220" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#FFFFFF" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+    <style>
+      .p { fill: #99F6E4; animation: drift 16s linear infinite; }
+      .p2 { animation-duration: 21s; animation-delay: -7s; }
+      .p3 { animation-duration: 27s; animation-delay: -13s; }
+      @keyframes drift { 0% { transform: translate(0,0); opacity: 0; } 15% { opacity: .55; }
+        85% { opacity: .35; } 100% { transform: translate(-120px,-110px); opacity: 0; } }
+    </style>
+  </defs>
+  <rect width="1200" height="340" fill="url(#bg)"/>
+  <rect width="1200" height="340" fill="url(#grid)"/>
+  <rect width="1200" height="340" fill="url(#glow)"/>
+  <circle cx="1020" cy="92" r="26" fill="none" stroke="#FDE68A" stroke-opacity=".35"/>
+  <circle cx="1020" cy="92" r="16" fill="#FDE68A" fill-opacity=".85"/>
+  <path fill="url(#far)" d="M560 340 V250 h30 v-25 h22 v40 h18 v-60 h26 v60 h16 v-35 h30 v55 h20 v-80 h24 v80 h18 v-45 h34 v45 h20 v-30 h26 v30 h22 v-65 h28 v65 h20 v-40 h30 v40 h24 v-55 h26 v55 h20 v-28 h30 v28 h24 V340 Z"/>
+  <g transform="translate(860 0)">
+    <path d="M-14 340 C-12 280 -8 230 -18 170 L-4 170 L0 140 L4 170 L18 170 C8 230 12 280 14 340 Z" fill="url(#near)" stroke="#2DD4BF" stroke-opacity=".25"/>
+    <path d="M-18 170 C-30 160 -34 148 -32 138 M18 170 C30 160 34 148 32 138" stroke="#2DD4BF" stroke-opacity=".45" stroke-width="3" fill="none"/>
+    <circle cx="0" cy="128" r="18" fill="url(#gold)"/>
+    <circle cx="-6" cy="122" r="5" fill="#FFFFFF" opacity=".5"/>
+  </g>
+  <path d="M960 340 L1015 256 L1070 340 Z" fill="#0F2F3A" stroke="#2DD4BF" stroke-opacity=".2"/>
+  <path fill="url(#near)" d="M600 340 V288 h40 v-18 h26 v70 h12 v-92 h34 v92 h16 v-52 h40 v52 h14 v-34 h30 v34 h18 v-70 h22 v70 h12 V340 Z"/>
+  <path fill="url(#near)" d="M900 340 V282 h30 v-30 h24 v88 Z M1080 340 V270 h26 v-22 h20 v92 Z M1130 340 V290 h40 v50 Z"/>
+  <g fill="#FDE68A" opacity=".55">
+    <rect x="716" y="264" width="3" height="5"/><rect x="726" y="278" width="3" height="5"/><rect x="716" y="292" width="3" height="5"/>
+    <rect x="770" y="302" width="3" height="5"/><rect x="782" y="316" width="3" height="5"/><rect x="866" y="290" width="3" height="5"/>
+    <rect x="1094" y="282" width="3" height="5"/><rect x="1104" y="296" width="3" height="5"/><rect x="606" y="300" width="3" height="5"/>
+  </g>
+  <g>
+    <circle class="p" cx="660" cy="270" r="2"/><circle class="p p2" cx="720" cy="290" r="1.5"/>
+    <circle class="p p3" cx="780" cy="250" r="2"/><circle class="p" cx="840" cy="300" r="1.5" style="animation-delay:-4s"/>
+    <circle class="p p2" cx="920" cy="250" r="2"/><circle class="p p3" cx="1000" cy="280" r="1.5"/>
+    <circle class="p" cx="1060" cy="230" r="2" style="animation-delay:-9s"/><circle class="p p2" cx="1120" cy="270" r="1.5"/>
+    <circle class="p p3" cx="700" cy="230" r="1.3"/><circle class="p" cx="960" cy="310" r="1.3" style="animation-delay:-2s"/>
+    <circle class="p p2" cx="1170" cy="240" r="1.8"/><circle class="p p3" cx="610" cy="300" r="1.8"/>
+  </g>
+  <rect width="1200" height="340" fill="url(#fade)"/>
+</svg>

@@ -7,8 +7,7 @@ The system forecasts the **mean PM2.5 (µg/m³) of the next local calendar day**
 is issued at **18:00 Asia/Almaty** and uses only data available at that moment. Four regression models
 (Ridge, Random Forest, XGBoost, SVR) are tuned with time-series cross-validation, compared with a persistence
 baseline on a chronological split (train 2021–2023, validation 2024, test 2025), and the selected model is
-exposed through a command-line forecaster. No graphical interface is part of this phase; `prediction.make_forecast`
-returns a plain dictionary so that a web/GUI front end can be added later.
+exposed through a command-line forecaster. The selected model is used by the CLI and by the interactive web application in `app/` (section 5a).
 
 ## 1. Setup
 
@@ -75,6 +74,32 @@ python -m pytest                     # unit, leakage, model and CLI tests (mocke
 ```
 
 Synthetic fixtures exist only inside `tests/` and are never used as experimental data.
+
+## 5a. Web application
+
+An interactive Streamlit application (`app/`) sits on top of the backend:
+
+```bash
+pip install -r requirements.txt      # includes streamlit and plotly
+streamlit run app/app.py             # opens http://localhost:8501
+```
+
+| Page | What it shows |
+|---|---|
+| Home | project summary, key results, latest forecast |
+| Live Forecast | runs `prediction.make_forecast` (real API + Open-Meteo), category, 90 % band, provider comparison, map |
+| Track Record | SQLite store of every forecast; real outcomes downloaded automatically and scored; hindcasts |
+| Model Arena | leaderboard, accuracy plots, model × feature-set heatmap, tuning results, model guide |
+| Time Machine | replay any 2025 test day: each model's forecast vs the real value, hourly profile |
+| What-if Simulator | change recent pollution / weather and watch every saved model respond; sensitivity curves |
+| Explainability | permutation and tree importance, Ridge coefficients, feature families |
+| Data Explorer | interactive EDA of both datasets, data quality, report figures, raw tables |
+| Experiments E1–E7 | hypotheses H1–H5 with verdicts computed from `artifacts/metrics/` |
+| Methods & Literature | methodology, LaTeX formulas, literature matrix, references, limitations |
+
+Forecasts are stored in `data/app/forecast_store.db` (tables `forecasts`, `observations`, `events`).
+The API key is read from `.env` exactly as for the CLI. `scikit-learn` is pinned to 1.6.1, the version the
+saved models were trained with.
 
 ## 6. Project layout
 

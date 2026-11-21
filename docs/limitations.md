@@ -5,9 +5,10 @@
    them against Kazhydromet stations. All accuracy statements refer to the API series.
 2. **Spatial representativeness.** One coordinate cannot represent intra-urban variability (e.g. districts with
    private coal heating vs central areas).
-3. **No meteorological inputs.** Version 1 uses pollution history and calendar features only. Temperature
-   inversions, wind and snowfall drive Astana's winter episodes; without weather *forecasts* the model cannot
-   anticipate sudden changes that are not visible in recent pollution.
+3. **Weather inputs are a forecast.** Version 2 adds Open-Meteo weather. In the historical benchmark the
+   target-day weather comes from reanalysis ("perfect prognosis"), which is optimistic; live forecasts use the
+   real Open-Meteo forecast, whose own errors add to the model error. `full_weather_past` (no target-day
+   weather) is reported as the strictly operational benchmark.
 4. **Single test year.** 2025 is one realisation of inter-annual variability; a different year could rank the
    models differently. Rolling-origin evaluation is future work.
 5. **Elevated-pollution sample size.** The number of days above the training 90th percentile in 2025 is limited;
@@ -23,5 +24,5 @@
     features; they do not establish causes.
 11. **Prediction interval.** The empirical interval assumes that future residuals resemble 2024 validation
     residuals; its coverage is not guaranteed.
-12. **Backend only.** The course expects an application for three-person teams; this phase provides a
-    command-line application. A graphical interface is planned for the next phase and is not claimed here.
+12. **Prototype application.** The Streamlit web application (`app/`) runs locally on one computer and keeps its
+    forecast history in a local SQLite file; it is not a deployed multi-user service.

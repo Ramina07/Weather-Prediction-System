@@ -31,3 +31,6 @@ artifacts/logs/*.log
 .DS_Store
 Thumbs.db
 .vscode/*.log
+
+# --- Web app ---
+.streamlit/secrets.toml
